@@ -1,0 +1,44 @@
+<section ng-controller="MyPosterController" ng-init="postersRecommend()">
+
+    <div ng-include="'/modules/posters/client/views/posters/create-poster.client.view.html'"></div>
+    <div ng-include="'/modules/posters/client/views/posters/operate-poster.client.view.html'"></div>
+
+    <div class="row my-poster-list">
+        <div class="col-xs-10 col-xs-offset-1">
+            <div class="my-poster-item" ng-repeat="poster in postersList">
+                <div class="my-poster-body">
+                    <div class="my-poster-image" ng-if="poster.medias.length && poster.type==1">
+                        <img ng-src="{{poster.medias[0].thumbUrl}}">
+                        <a ui-sref="poster.view({posterId: poster.id})"></a>
+                    </div>
+                    <div class="my-poster-image" ng-if="poster.medias.length && poster.type==2">
+                        <img ng-src="{{poster.medias[0].thumbUrl}}">
+                        <span class="glyphicon glyphicon-film"></span>
+                        <a ui-sref="poster.view({posterId: poster.id})"></a>
+                    </div>
+                    <div class="my-poster-title" ng-if="poster.title">
+                        <a ng-bind="poster.title" ui-sref="poster.view({posterId: poster.id})"></a>
+                    </div>
+                    <div class="my-poster-content" ng-if="poster.content">
+                        <p ng-bind="poster.content"></p>
+                    </div>
+                </div>
+                <div class="my-poster-footer">
+                    <div class="pull-right my-poster-operate" ng-click="deletePoster(poster)">
+                        <i class="glyphicon glyphicon-trash">删除</i>
+                    </div>
+                    <div class="pull-right my-poster-operate" ng-click="editPoster(poster)">
+                        <i class="glyphicon glyphicon-pencil">修改</i>
+                    </div>
+                    <div>
+                        <em class="text-muted" ng-bind="poster.created | date: 'MMM d, y HH:mm:ss'"></em>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-warning text-center" ng-if="isInited && !postersList.length">
+                这里什么都没有...
+            </div>
+        </div>
+    </div>
+
+</section>

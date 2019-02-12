@@ -1,0 +1,290 @@
+.poster-list-item {
+    padding: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid lightgray;
+}
+
+.poster-list-title {
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.poster-list-image {
+    position: relative;
+    margin-bottom: 0.5em;
+    opacity: 1;
+}
+.poster-list-image:hover {
+    opacity: 0.8;
+}
+
+.poster-list-image img,
+.poster-list-image video {
+    width: 100%;
+    height: auto;
+}
+
+.poster-list-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.poster-list-image .glyphicon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: lightgray;
+    opacity: 0.9;
+}
+
+.poster-list-content {
+    word-wrap: break-word;
+    max-height: 10em;
+    overflow: hidden;
+}
+
+.poster-list-time {
+    margin-bottom: 0.5em;
+}
+
+.poster-image {
+    margin-top: 1em;
+}
+.poster-image img {
+    max-width: 100%;
+}
+.poster-image video {
+    max-width: 100%;
+}
+
+.poster-title {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+    word-wrap: break-word;
+}
+
+.poster-content {
+    margin-top: 1em;
+    word-wrap: break-word;
+}
+
+.poster-time {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    float: right;
+}
+
+.poster-comment {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid lightgray;
+}
+
+.poster-header-image {
+    opacity: 0.8;
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    vertical-align: bottom;
+}
+a:hover .poster-header-image {
+    opacity: 1;
+}
+
+.poster-header:hover {
+    text-decoration: none;
+}
+
+.poster-header-name {
+    font-size: 2em;
+}
+
+.poster-header-description {
+    padding: 1em;
+    word-wrap: break-word;
+}
+
+.poster-me-photo{
+    min-width: 5em;
+}
+.poster-me-photo img {
+    vertical-align: text-bottom;
+    opacity: 0.8;
+    height: 5em;
+    width: 5em;
+}
+.poster-me-photo img:hover {
+    opacity: 1;
+}
+
+.poster-type-select {
+    float: left;
+    margin-left: -1px;
+    border: 1px solid lightgray;
+    text-align: center;
+    height: 5em;
+    width: 5em;
+}
+.poster-type-select span {
+    font-size: 3em;
+    color: dimgray;
+    transition: all .2s;
+}
+.poster-type-select.active span {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+.poster-type-select div {
+    font-size: 0.75em;
+}
+
+.create-poster-title {
+    margin-bottom: 0.5em;
+}
+
+.create-poster-content {
+    margin-bottom: 0.5em;
+}
+
+.create-poster-upload {
+    position: relative;
+    margin-bottom: 0.5em;
+}
+.create-poster-upload .glyphicon{
+    font-size: 2em;
+}
+.create-poster-upload input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.create-poster-image {
+    position: relative;
+    display: inline-block;
+    margin: 0.5em;
+}
+.create-poster-image img,
+.create-poster-image video {
+    height: 10em;
+    min-width: 5em;
+}
+
+.poster-image-progress {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 0.5em;
+    width: 5em;
+}
+
+.poster-image-status {
+    position: absolute;
+    right: 0.5em;
+    bottom: 0.5em;
+    opacity: 0.9;
+}
+.poster-image-status span {
+    cursor: default;
+}
+
+.my-poster-list {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.my-poster-item {
+    border: 1px solid lightgray;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+.my-poster-body {
+    padding: 0.5em;
+    overflow: hidden;
+}
+
+.my-poster-title {
+    font-size: 1.2em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.my-poster-content {
+    word-wrap: break-word;
+    max-height: 20em;
+    overflow: hidden;
+}
+
+.my-poster-image {
+    float: left;
+    width: 25%;
+    position: relative;
+    opacity: 1;
+    padding: 0.5em;
+}
+
+.my-poster-image:hover {
+    opacity: 0.8;
+}
+
+.my-poster-image img,
+.my-poster-image video {
+    width: 100%;
+    height: auto;
+}
+
+.my-poster-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.my-poster-image .glyphicon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: lightgray;
+    opacity: 0.9;
+}
+
+.my-poster-footer {
+    padding: 0.5em;
+}
+
+.my-poster-operate {
+    margin-left: 1em;
+    color: darkslategray;
+    cursor: pointer;
+}
+
+.my-poster-operate:hover {
+    opacity: 0.9;
+}
+
+.edit-poster-fieldset {
+    padding-top: 2em;
+}
+

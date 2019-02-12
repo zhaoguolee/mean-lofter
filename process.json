@@ -1,0 +1,15 @@
+{
+	"apps": [
+		{
+			"name": "planx",
+			"script": "server.js",
+			"env": {
+				"NODE_ENV": "production",
+				},
+			"exec_mode": "cluster",
+			"merge_logs"  : true,
+			"log_date_format"  : "YYYY-MM-DD HH:mm:ss:SSS"
+		}
+	]
+}
+

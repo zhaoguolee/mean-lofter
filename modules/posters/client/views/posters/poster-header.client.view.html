@@ -1,0 +1,7 @@
+<div class="page-header text-center">
+    <a class="poster-header" ui-sref="poster.list({username: selectedUser.username})">
+        <img ng-src="{{selectedUser.thumbUrl}}" alt="{{selectedUser.displayName}}" class="poster-header-image" />
+        <span ng-bind="selectedUser.displayName" class="poster-header-name"></span>
+    </a>
+    <div class="poster-header-description"><span ng-bind="selectedUser.description"></span></div>
+</div>

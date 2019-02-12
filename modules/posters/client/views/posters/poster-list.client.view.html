@@ -1,0 +1,33 @@
+<section ng-controller="PostersController" ng-init="postersByUser()">
+    <div ng-include="'/modules/posters/client/views/posters/poster-header.client.view.html'"></div>
+    <div class="masonry center-block" masonry-data='{"fitWidth": true}'>
+        <div class="masonry-item poster-list-item" ng-style="{width: '250px'}" ng-repeat="poster in postersList">
+            <div class="poster-list-image" ng-if="poster.medias.length && poster.type==1">
+                <img ng-src="{{poster.medias[0].thumbUrl}}" ng-style="{height: '{{240 * poster.medias[0].height / poster.medias[0].width}}px'}">
+                <a ui-sref="poster.view({posterId: poster.id})"></a>
+            </div>
+            <div class="poster-list-image" ng-if="poster.medias.length && poster.type==2">
+                <img ng-src="{{poster.medias[0].thumbUrl}}" ng-style="{height: '{{240 * poster.medias[0].height / poster.medias[0].width}}px'}">
+                <span class="glyphicon glyphicon-film"></span>
+                <a ui-sref="poster.view({posterId: poster.id})"></a>
+            </div>
+            <div class="poster-list-title" ng-if="poster.title">
+                <a ng-bind="poster.title" ui-sref="poster.view({posterId: poster.id})"></a>
+            </div>
+            <div class="poster-list-content" ng-if="poster.content">
+                <p ng-bind="poster.content"></p>
+            </div>
+            <div class="poster-list-time text-right">
+                <em class="text-muted" ng-bind="poster.created | date: 'MMM d, y HH:mm:ss'"></em>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <div ng-show="!postersError && !finished" infinite-scroll="postersByUser()" infinite-scroll-finished="finished">加载中...</div>
+        <div role="button" ng-show="postersError" ng-click="postersByUser()">点击重试</div>
+    </div>
+
+    <div class="alert alert-warning text-center" ng-if="isInited && !postersList.length">
+        这里什么都没有...
+    </div>
+</section>

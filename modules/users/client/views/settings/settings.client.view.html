@@ -1,0 +1,23 @@
+<section ng-controller="SettingsController">
+  <div class="page-header">
+    <h1>个人设置</h1>
+  </div>
+  <div class="row">
+    <nav class="col-sm-3 col-md-3">
+      <ul class="nav nav-pills nav-stacked">
+        <li ui-sref-active="active">
+          <a ui-sref="settings.profile">个人资料</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="settings.picture">用户头像</a>
+        </li>
+        <li ui-sref-active="active" ng-show="user.provider === 'local'">
+          <a ui-sref="settings.password">修改密码</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="col-sm-9 col-md-8 settings-view">
+      <div ui-view></div>
+    </div>
+  </div>
+</section>

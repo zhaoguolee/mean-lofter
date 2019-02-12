@@ -1,0 +1,168 @@
+<section>
+    <div class="page-header">
+        <div class="row">
+            <div class="col-xs-3 col-md-2 poster-me-photo">
+                <a class="poster-header" ui-sref="poster.list({username: user.username})">
+                    <img ng-src="{{user.thumbUrl}}" alt="{{user.displayName}}">
+                </a>
+            </div>
+            <div class="col-xs-9 col-md-10">
+                <div ng-click="setPosterType(1)" ng-class="posterType=='images'?'active':''" class="poster-type-select btn">
+                    <span class="glyphicon glyphicon-picture"></span>
+                    <div>图片</div>
+                </div>
+                <div ng-click="setPosterType(2)" ng-class="posterType=='videos'?'active':''" class="poster-type-select btn">
+                    <span class="glyphicon glyphicon-film"></span>
+                    <div>视频</div>
+                </div>
+                <div ng-click="setPosterType(0)" ng-class="posterType=='text'?'active':''" class="poster-type-select btn">
+                    <span class="glyphicon glyphicon-file"></span>
+                    <div>文字</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div ng-show="creatingPoster.type==1" class="col-xs-10 col-xs-offset-1">
+            <div class="animated fadeIn" nv-file-drop="" uploader="uploader" options="{url: '/api/media/image', alias: 'image'}">
+                <div class="text-center">
+                    <div class="create-poster-image" ng-repeat="item in uploader.queue">
+                        <div ng-show="uploader.isHTML5" >
+                            <img image-thumb="{file: item._file}" class="img-thumbnail">
+                        </div>
+                        <div ng-show="uploader.isHTML5 && item.isUploading" class="progress poster-image-progress">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                        <div ng-show="item.isSuccess" class="poster-image-status">
+                            <span class="btn btn-success btn-xs">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </div>
+                        <div ng-show="item.isError" class="poster-image-status">
+                            <span class="btn btn-danger btn-xs">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </span>
+                        </div>
+                        <div ng-hide="item.isSuccess" class="poster-image-status">
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-hide="uploader.queue.length >= uploader.queueLimit" class="create-poster-upload">
+                    <div>
+                        <span class="glyphicon glyphicon-camera"></span>
+                        <span ng-hide="uploader.queue.length">添加图片</span>
+                        <span ng-show="uploader.queue.length">继续添加</span>
+                    </div>
+                    <input type="file" nv-file-select="" uploader="uploader" options="{url: '/api/media/image', alias: 'image'}" multiple/>
+                </div>
+                <div>
+                    <form name="imagePosterForm" class="form-horizontal" ng-submit="submit()" novalidate>
+                        <fieldset>
+                            <div class="create-poster-content">
+                                <textarea name="content" ng-model="creatingPoster.content" class="form-control" rows="3" placeholder="内容(可不填)"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-warning btn-s" ng-click="cancel()">
+                                    <span class="glyphicon glyphicon-ban-circle"></span> 取消
+                                </button>
+                                <button type="submit" class="btn btn-success btn-s"
+                                        ng-disabled="!uploader.getNotUploadedItems().length">
+                                    <span class="glyphicon glyphicon-upload"></span> 发布
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div ng-show="creatingPoster.type==2" class="col-xs-10 col-xs-offset-1">
+            <div class="animated fadeIn" nv-file-drop="" uploader="uploader" options="{url: '/api/media/video', alias: 'video'}">
+                <div class="text-center">
+                    <div class="create-poster-image" ng-repeat="item in uploader.queue">
+                        <div ng-show="uploader.isHTML5">
+                            <video video-thumb="{file: item._file}" class="img-thumbnail"></video>
+                        </div>
+                        <div ng-show="uploader.isHTML5 && item.isUploading" class="progress poster-image-progress">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                        <div ng-show="item.isSuccess" class="poster-image-status">
+                            <span class="btn btn-success btn-xs">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </div>
+                        <div ng-show="item.isError" class="poster-image-status">
+                            <span class="btn btn-danger btn-xs">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </span>
+                        </div>
+                        <div ng-hide="item.isSuccess" class="poster-image-status">
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-hide="uploader.queue.length >= uploader.queueLimit" class="create-poster-upload">
+                    <div>
+                        <span class="glyphicon glyphicon-facetime-video"></span>
+                        <span ng-hide="uploader.queue.length">添加视频</span>
+                        <span ng-show="uploader.queue.length">继续添加</span>
+                    </div>
+                    <input type="file" nv-file-select="" uploader="uploader" options="{url: '/api/media/video', alias: 'video'}" multiple/>
+                </div>
+                <div>
+                    <form name="videoPosterForm" class="form-horizontal" ng-submit="submit()" novalidate>
+                        <fieldset>
+                            <div class="create-poster-content">
+                                <textarea name="content" ng-model="creatingPoster.content" class="form-control" rows="3" placeholder="内容(可不填)"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-warning btn-s" ng-click="cancel()">
+                                    <span class="glyphicon glyphicon-ban-circle"></span> 取消
+                                </button>
+                                <button type="submit" class="btn btn-success btn-s"
+                                        ng-disabled="!uploader.getNotUploadedItems().length">
+                                    <span class="glyphicon glyphicon-upload"></span> 发布
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div ng-show="creatingPoster.type==0" class="col-xs-10 col-xs-offset-1">
+            <div class="animated fadeIn">
+                <form name="textPosterForm" class="form-horizontal"
+                      ng-submit="submit('textPosterForm', textPosterForm.$valid)" novalidate>
+                    <fieldset>
+                        <div class="create-poster-title">
+                            <input name="title" type="text" ng-model="creatingPoster.title" class="form-control" placeholder="标题(可不填)" >
+                        </div>
+                        <div class="create-poster-content" show-errors="skipFormGroupCheck">
+                            <textarea name="content" ng-model="creatingPoster.content" class="form-control" rows="3" placeholder="内容" required></textarea>
+                            <div ng-messages="textPosterForm.content.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">请输入内容</p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-warning btn-s" ng-click="cancel()">
+                                <span class="glyphicon glyphicon-ban-circle"></span> 取消
+                            </button>
+                            <button type="submit" class="btn btn-success btn-s">
+                                <span class="glyphicon glyphicon-upload"></span> 发布
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div ng-show="createError" class="text-center text-danger col-xs-10 col-xs-offset-1">
+            <strong ng-bind="createError"></strong>
+        </div>
+    </div>
+</section>
